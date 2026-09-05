@@ -55,14 +55,15 @@ function M.ShowMessage(message, texturePath)
 
 	local obj = StaticFindObject(texturePath)
 
-	---@cast obj UTexture2D
 	if not obj:IsValid() then
-		-- load texture
 		LoadAsset(texturePath)
+		obj = StaticFindObject(texturePath)
 	end
-	if not obj then
+
+	if not obj:IsValid() then
 		return
 	end
+	---@cast obj UTexture2D
 
 	-- display message with icon
 	---@diagnostic disable-next-line: undefined-global
